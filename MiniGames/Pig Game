@@ -1,0 +1,33 @@
+import random
+print("   Welcome to the Pig Game   ")
+NP={}
+num=int(input("Enter Number of Player: "))
+for i in range(1,num+1):
+    n=input("\nEnter Name of The Player: ")
+    NP[n]=0
+print("\nLets Start , Shall we??")
+rounds=5
+for l in range(rounds):
+    for name in NP:
+        flag="y"
+        count=0
+        while flag=="y":
+            print("\nIts ",name,"'s Turn Now")
+            print("Rolling...")
+            r=random.randint(1,6)
+            if r==1:
+                print("Oh no!!! , You Got a 1 on Your Die")
+                print("Your Total For This Round Resets to 0")
+                break
+            else:
+                print(" The Number You Rolled is: ",r)
+                count=count+r
+                flag=input("\nDo you want to Roll Again (Y/N)").lower()
+        NP[name]+=count
+
+HP=sorted(NP.items(),reverse=False)
+for o in NP:
+    if NP[o]==HP:
+        print(o,"is the winner with ",HP,"Points")
+    else:
+        print(o," Has ",NP[o],"points")
